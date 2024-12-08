@@ -1207,7 +1207,7 @@ function Send-Dnscat2Packet ($Packet, $Domain, $DNSServer, $DNSPort, $LookupType
     }
 
     $Packet = Add-DNSDots $Packet
-    $Packet += ("." + $Domain)
+    $Packet += ("." + $Domain + ".")
     $Command = ("set type=$LookupType`nserver $DNSServer`nset port=$DNSPort`nset retry=1`n" + $Packet + "`nexit")
     $result = ($Command | nslookup 2>&1 | Out-String)
     $Done = $False
